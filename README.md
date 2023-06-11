@@ -20,3 +20,11 @@ pip install -e .
 ### Docker
 
 <docker-usage-instructions-here>
+
+
+## Getting Started
+
+```
+Run cifar model training
+python3 copper/train.py data = cifar.yaml model= cifar10.yaml
+```
