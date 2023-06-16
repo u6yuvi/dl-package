@@ -1,5 +1,4 @@
 from typing import Tuple, Dict
-
 import lightning as L
 import torch
 import hydra

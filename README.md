@@ -30,10 +30,17 @@ conda activate dl-project
 make pip-tools
 
 #Train Model
-python3 copper/train.py data =cifar.yaml model= timm.yaml
+python3 copper/train.py data=cifar.yaml model=timm.yaml
+
+Experiment Artifacts stored at path: outputs/
+Refer config/hydra/default.yaml for more information on configuring output dir.
 
 #Evaluate Model
-python3 copper/eval.py data =cifar.yaml model= timm.yaml
+Add the model checkpoint filename at config/eval.yaml
+    ckpt_file: xxx.ckpt
+or  
+pass the model checkpoint filename in the command line duirng evaluation
+python3 copper/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt
 ```
 
 

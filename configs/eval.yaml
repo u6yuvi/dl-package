@@ -6,7 +6,6 @@ defaults:
   - trainer: default.yaml
 
 
-# ckpt_dir: ${hydra:runtime.cwd}/outputs/
-# ckpt_file: 2023-06-15/00-46-28/checkpoints/last.ckpt
-# ckpt_path: 
-ckpt_path: /Users/uv/Documents/work/gitrepos/dl-package/outputs/2023-06-15/00-46-28/checkpoints/last.ckpt
+ckpt_dir: ${hydra:runtime.cwd}/outputs/
+ckpt_file: 2023-06-15/00-46-28/checkpoints/last.ckpt
+ckpt_path: ${ckpt_dir}/${ckpt_file}
