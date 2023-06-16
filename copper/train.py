@@ -1,14 +1,14 @@
-from typing import Tuple, Dict
-
+from typing import Tuple
 import lightning as L
-import torch
-import hydra
+import hydra 
 from omegaconf import DictConfig
+from lightning import Callback, LightningDataModule, LightningModule, Trainer
+from typing import List
 
 from copper import utils
 
 log = utils.get_pylogger(__name__)
-
+    
 
 @utils.task_wrapper
 def train(cfg: DictConfig) -> Tuple[dict, dict]:
@@ -22,8 +22,11 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
     log.info(f"Instantiating model <{cfg.model._target_}>")
     model: LightningModule = hydra.utils.instantiate(cfg.model)
 
+    log.info("Instantiating callbacks...")
+    callbacks: List[Callback] = utils.instantiate_callbacks(cfg.get("callbacks"))
+
     log.info(f"Instantiating trainer <{cfg.trainer._target_}>")
-    trainer: Trainer = hydra.utils.instantiate(cfg.trainer)
+    trainer: Trainer = hydra.utils.instantiate(cfg.trainer, callbacks=callbacks)
 
     object_dict = {
         "cfg": cfg,

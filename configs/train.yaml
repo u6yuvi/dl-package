@@ -4,10 +4,11 @@
 # order of defaults determines the order in which configs override each other
 defaults:
   - _self_
-  - data: mnist.yaml
-  - model: mnist.yaml
+  - data: cifar10.yaml
+  - model: timm.yaml
   - paths: default.yaml
   - trainer: default.yaml
+  - callbacks: default.yaml
 
 # task name, determines output directory path
 task_name: "train"
@@ -23,7 +24,7 @@ test: True
 compile: False
 
 # simply provide checkpoint path to resume training
-ckpt_path: null
+ckpt_path: 
 
 # seed for random number generators in pytorch, numpy and python.random
 seed: null
