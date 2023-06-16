@@ -33,10 +33,10 @@ make pip-tools
 python3 copper/train.py data=cifar.yaml model=timm.yaml
 
 Experiment Artifacts stored at path: outputs/
-Refer config/hydra/default.yaml for more information on configuring output dir.
+Refer configs/hydra/default.yaml for more information on configuring output dir.
 
 #Evaluate Model
-Add the model checkpoint filename at config/eval.yaml
+Add the model checkpoint filename at configs/eval.yaml
     ckpt_file: xxx.ckpt
 or  
 pass the model checkpoint filename in the command line duirng evaluation

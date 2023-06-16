@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    # volumes:
+    #   # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
+    #   # - ..:/workspace:cached
+    # volumes:
+    #   - ../:/workspace/
+    #   # - ./mnist/model:/workspace/mnist/model
+    #   # - ./mnist/data:/workspace/mnist/data
+    #   # - mnist/model:/workspace/mnist/model
+    #   # - mnist/data:/workspace/mnist/data
+    restart: on-failure
+
+# volumes:
+#   copper:{}
+
