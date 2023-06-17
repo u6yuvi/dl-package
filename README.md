@@ -29,24 +29,37 @@ conda activate dl-project
 #install dl_pkg package
 pip3 install -e .
 
-#Train Model
-Eg:
+#Train Model through command line
 - `dl_pkg_train data.num_workers=16`
+or 
 - `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
 
 Experiment Artifacts stored at path: outputs/
-Refer configs/hydra/default.yaml for more information on configuring output dir.
+Refer- configs/hydra/default.yaml for more information on configuring output dir.
 
 #Evaluate Model
 Add the model checkpoint filename at configs/eval.yaml
     ckpt_file: xxx.ckpt
-or  
-pass the model checkpoint filename in the command line duirng evaluation
+or  pass it through command line while running evaluation
+
 - `dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt`
 or 
 - `python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt`
 ```
 
+
+### Run in DevContainer with VS Code
+#### Install Dependencies 
+
+```
+# clone project 
+git clone https://github.com/u6yuvi/dl-package.git dl-project
+cd dl-project/
+
+#Rebuild the dev container using the .devcontainer config files
+Read about DevContainers here - [Developing inside a container](https://code.visualstudio.com/docs/devcontainers/containers)
+![](images/dev-container.png)
+```
 
 # Lightning Template
 
@@ -55,9 +68,6 @@ dl_pkg_train --help
 ```
 
 examples
-
-- `dl_pkg_train data.num_workers=16`
-- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
 
 ## Development
 
@@ -71,10 +81,3 @@ pip install -e .
 
 <docker-usage-instructions-here>
 
-
-## Getting Started
-
-```
-Run cifar model training
-python3 dl_pkg/train.py data = cifar.yaml model= cifar10.yaml
-```
