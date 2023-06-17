@@ -2,8 +2,18 @@ version: '3.9'
 services:
   app:
     build:
-      context: ./
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+
+    # volumes:
+    #   # Use a named volume for the source code
+    #   - my-app:/workspace
+    #   # Persist VS Code extensions between rebuilds
+    #   - vscode-extensions:/root/.vscode-server/extensions
+    #   # And/or for VS Code Insiders
+    #   - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
+    volumes:
+      - .:/workspace:cached
     # volumes:
     #   # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
     #   # - ..:/workspace:cached
@@ -16,5 +26,7 @@ services:
     restart: on-failure
 
 # volumes:
-#   copper:{}
+#   my-app:
+#   vscode-extensions:
+#   vscode-extensions-insiders:
 
