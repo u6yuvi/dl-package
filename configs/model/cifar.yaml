@@ -1,4 +1,4 @@
-_target_: copper.models.cifar_module.CIFARLitModule
+_target_: dl_pkg.models.cifar_module.CIFARLitModule
 
 optimizer:
   _target_: torch.optim.Adam
@@ -14,7 +14,7 @@ scheduler:
   patience: 10
 
 net:
-  _target_: copper.models.components.convnet.SimpleConvNet
+  _target_: dl_pkg.models.components.convnet.SimpleConvNet
   #input_size: 784
   lin1_size: 120
   lin2_size: 84

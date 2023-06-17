@@ -4,8 +4,10 @@ import hydra
 from omegaconf import DictConfig
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from typing import List
+import sys
+sys.path.append("./")
 
-from copper import utils
+from dl_pkg import utils
 
 log = utils.get_pylogger(__name__)
     

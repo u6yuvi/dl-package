@@ -3,7 +3,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="copper",
+    name="dl_pkg",
     version="0.0.1",
     description="PyTorch Lightning Project Setup",
     author="",
@@ -14,8 +14,8 @@ setup(
     # use this to customize global commands available in the terminal after installing the package
     entry_points={
         "console_scripts": [
-            "copper_train = copper.train:main",
-            "copper_eval = copper.eval:main",
+            "dl_pkg_train = dl_pkg.train:main",
+            "dl_pkg_eval = dl_pkg.eval:main",
         ]
     },
 )

@@ -1,4 +1,4 @@
-_target_: copper.models.timm_module.TIMMLitModule
+_target_: dl_pkg.models.timm_module.TIMMLitModule
 
 optimizer:
   _target_: torch.optim.Adam

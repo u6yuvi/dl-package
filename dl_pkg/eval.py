@@ -4,7 +4,7 @@ import torch
 import hydra
 from omegaconf import DictConfig
 
-from copper import utils
+from dl_pkg import utils
 
 log = utils.get_pylogger(__name__)
 

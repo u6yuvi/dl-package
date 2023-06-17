@@ -30,7 +30,7 @@ conda activate dl-project
 make pip-tools
 
 #Train Model
-python3 copper/train.py data=cifar.yaml model=timm.yaml
+python3 dl_pkg/train.py data=cifar.yaml model=timm.yaml
 
 Experiment Artifacts stored at path: outputs/
 Refer configs/hydra/default.yaml for more information on configuring output dir.
@@ -40,20 +40,20 @@ Add the model checkpoint filename at configs/eval.yaml
     ckpt_file: xxx.ckpt
 or  
 pass the model checkpoint filename in the command line duirng evaluation
-python3 copper/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt
+python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt
 ```
 
 
 # Lightning Template
 
 ```
-copper_train --help
+dl_pkg_train --help
 ```
 
 examples
 
-- `copper_train data.num_workers=16`
-- `copper_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
+- `dl_pkg_train data.num_workers=16`
+- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
 
 ## Development
 
@@ -72,5 +72,5 @@ pip install -e .
 
 ```
 Run cifar model training
-python3 copper/train.py data = cifar.yaml model= cifar10.yaml
+python3 dl_pkg/train.py data = cifar.yaml model= cifar10.yaml
 ```
