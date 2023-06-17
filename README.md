@@ -5,10 +5,10 @@
 
 # Key Features
 
-1. Supports Pytorch Bring you own Model , Huggingface Models and Timm Models.
-2. Model Training using Pytorch Lightning Framework
+1. Supports Pytorch Custom Models, Huggingface Models and Timm Models.
+2. Model Training and Evaluation using Pytorch Lightning Framework
 3. Experiments Configuration using Hydra Template
-4. Logging using Tensorboard.
+4. Experiment Logging using Tensorboard.
 
 
 ## Getting Started
@@ -26,11 +26,13 @@ cd dl-project/
 conda env create -f conda_env.yml 
 conda activate dl-project
 
-#install packages
-make pip-tools
+#install dl_pkg package
+pip3 install -e .
 
 #Train Model
-python3 dl_pkg/train.py data=cifar.yaml model=timm.yaml
+Eg:
+- `dl_pkg_train data.num_workers=16`
+- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
 
 Experiment Artifacts stored at path: outputs/
 Refer configs/hydra/default.yaml for more information on configuring output dir.
@@ -40,7 +42,9 @@ Add the model checkpoint filename at configs/eval.yaml
     ckpt_file: xxx.ckpt
 or  
 pass the model checkpoint filename in the command line duirng evaluation
-python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt
+- `dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt`
+or 
+- `python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt`
 ```
 
 
