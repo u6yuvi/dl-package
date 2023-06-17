@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/devcontainers/python:0-3.9
+#FROM mcr.microsoft.com/devcontainers/python:0-3.9
+FROM u6yuvi/devcontainer_py39
 
 # # RUN apt-get update -y && \
 # #  	apt-get install -y make && \
