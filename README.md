@@ -108,9 +108,10 @@ dl_pkg_evaluate --help
 ```
 tensorboard --logdir='outputs/path_to_tensorboard_logs' --port=xxxx
 ```
-[Tensorboard logs stored under](images/tensorboard_logs.png)
+![](images/tensorboard.png)
 
-[](images/tensorboard.png)
+![Tensorboard logs Directory](images/tensorboard_logs.png)
+
 
 # Maintainers
 
