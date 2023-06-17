@@ -51,33 +51,57 @@ or
 ### Run in DevContainer with VS Code
 #### Install Dependencies 
 
+1. Clone project 
 ```
-# clone project 
 git clone https://github.com/u6yuvi/dl-package.git dl-project
 cd dl-project/
-
-#Rebuild the dev container using the .devcontainer config files
-Read about DevContainers here - [Developing inside a container](https://code.visualstudio.com/docs/devcontainers/containers)
-![](images/dev-container.png)
 ```
 
-# Lightning Template
+2. Rebuild the dev container using the .devcontainer-> devcontainer.json file
+Read about DevContainers here - [Developing inside a container](https://code.visualstudio.com/docs/devcontainers/containers)
+![Dev Container](images/dev-container.png)
 
+Dev Container will start and install the python packages from requirements.txt
+![Installing the project python package dependencies](images/dev-container-requirements.png)
+
+3. Install dl_pkg package
+```
+pip3 install -e .
+```
+4. Train Model through command line
+```
+- `dl_pkg_train data.num_workers=16`
+or 
+- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
+```
+
+Experiment Artifacts stored at path: outputs/
+Refer- configs/hydra/default.yaml for more information on configuring output dir.
+
+5. Evaluate Model
+Add the model checkpoint filename at configs/eval.yaml
+    ckpt_file: xxx.ckpt
+or  pass it through command line while running evaluation
+```
+- `dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt`
+or 
+- `python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt`
+```
+
+
+# Hydra Template 
+
+Lists all the configurable parameters for this project during:
+1. Training
 ```
 dl_pkg_train --help
 ```
-
-examples
-
-## Development
-
-Install in dev mode
-
+2. Evaluation
 ```
-pip install -e .
+dl_pkg_evaluate --help
 ```
 
-### Docker
+# Maintainers
 
-<docker-usage-instructions-here>
+1. [Utkarsh Vardhan](https://github.com/u6yuvi)
 
