@@ -1,4 +1,5 @@
 outputs
-data
-*.egg-info
-logs
+/data/
+eggs/
+.eggs/
+logs/

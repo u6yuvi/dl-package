@@ -13,48 +13,41 @@
 
 ## Getting Started
 
-### Run in Conda Environment 
 
-#### Install Dependencies 
-
+## Training 
+1. Clone project 
 ```
-# clone project 
-git clone https://github.com/u6yuvi/dl-package.git dl-project
-cd dl-project/
-
-# create conda environment [dl-project]
-conda env create -f conda_env.yml 
-conda activate dl-project
-
-#install dl_pkg package
-pip3 install -e .
-
-#Train Model through command line
-- `dl_pkg_train data.num_workers=16`
-or 
-- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
-
-Experiment Artifacts stored at path: outputs/
-Refer- configs/hydra/default.yaml for more information on configuring output dir.
-
-#Evaluate Model
-Add the model checkpoint filename at configs/eval.yaml
-    ckpt_file: xxx.ckpt
-or  pass it through command line while running evaluation
-
-- `dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt`
-or 
-- `python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt`
+git clone https://github.com/u6yuvi/dl-package.git dl-package
+cd dl-package/
 ```
+2.  Run Training
+```
+docker run --name dl_container --rm u6yuvi/dl-package:latest dl_pkg_train
+```
+![](images/training.png)
 
 
-### Run in DevContainer with VS Code
+## EVALUATION
+1. Clone project 
+```
+git clone https://github.com/u6yuvi/dl-package.git dl-package
+cd dl-package/
+```
+2.  Run Evaluation
+```
+docker run --name dl_container --rm u6yuvi/dl-package:latest dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt
+```
+![](images/evaluation.png)
+
+
+
+### Development in DEV Container with VS Code
 #### Install Dependencies 
 
 1. Clone project 
 ```
-git clone https://github.com/u6yuvi/dl-package.git dl-project
-cd dl-project/
+git clone https://github.com/u6yuvi/dl-package.git dl-package
+cd dl-package/
 ```
 
 2. Rebuild the dev container using the .devcontainer-> devcontainer.json file
@@ -92,6 +85,40 @@ python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-4
 ```
 
 
+### Run in Conda Environment 
+
+#### Install Dependencies 
+
+```
+# clone project 
+git clone https://github.com/u6yuvi/dl-package.git dl-package
+cd dl-package/
+
+# create conda environment [dl-project]
+conda env create -f conda_env.yml 
+conda activate dl-project
+
+#install dl_pkg package
+pip3 install -e .
+
+#Train Model through command line
+- `dl_pkg_train data.num_workers=16`
+or 
+- `dl_pkg_train data.num_workers=16 trainer.deterministic=True +trainer.fast_dev_run=True`
+
+Experiment Artifacts stored at path: outputs/
+Refer- configs/hydra/default.yaml for more information on configuring output dir.
+
+#Evaluate Model
+Add the model checkpoint filename at configs/eval.yaml
+    ckpt_file: xxx.ckpt
+or  pass it through command line while running evaluation
+
+- `dl_pkg_eval ckpt_file=2023-06-17/20-23-38/checkpoints/last.ckpt`
+or 
+- `python3 dl_pkg/eval.py data=cifar.yaml model=timm.yaml ckpt_file=2023-06-15/00-46-28/checkpoints/last.ckpt`
+```
+
 # Hydra Template 
 
 Lists all the configurable parameters for this project during:
@@ -112,8 +139,12 @@ tensorboard --logdir='outputs/path_to_tensorboard_logs' --port=xxxx
 
 ![Tensorboard logs Directory](images/tensorboard_logs.png)
 
+# Docker Commands
+1. Build Docker Image
+```
+docker build -t dl-package -f .devcontainer/Dockerfile .
+```
 
 # Maintainers
 
 1. [Utkarsh Vardhan](https://github.com/u6yuvi)
-

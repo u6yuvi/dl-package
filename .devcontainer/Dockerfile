@@ -9,11 +9,15 @@ FROM u6yuvi/devcontainer_py39
 # #  	apt-get install -y curl &&\
 # # 	apt-get install -y python3-pip
 
-WORKDIR /workspace
+#WORKDIR /workspace
 #RUN pip3 install torch torchvision --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
 
 # #COPY . .
-#COPY requirements.txt ./workspace/
+#COPY requirements.txt .
+COPY . .
 
-#RUN pip3 install -r ./workspace/requirements.txt
+RUN pip3 install -r requirements.txt
+
+RUN pip3 install -e .
+#  python train.py --resume
 
