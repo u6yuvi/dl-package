@@ -145,6 +145,21 @@ tensorboard --logdir='outputs/path_to_tensorboard_logs' --port=xxxx
 docker build -t dl-package -f .devcontainer/Dockerfile .
 ```
 
+# Download Dataset
+1. DogvsCat
+```
+wget https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip
+unzip kagglecatsanddogs_5340.zip
+
+#split dataset in train and test
+scripts/split_dataset.py
+#Delete empty files
+find . -type f -empty -print -delete
+
+
 # Maintainers
 
 1. [Utkarsh Vardhan](https://github.com/u6yuvi)
+2. [Utkarsh Mittal](https://github.com/mittalutkarsh)
+3. [Ramkumar M](https://github.com/voldy12)
+
