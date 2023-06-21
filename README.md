@@ -155,7 +155,7 @@ unzip kagglecatsanddogs_5340.zip
 scripts/split_dataset.py
 #Delete empty files
 find . -type f -empty -print -delete
-
+```
 
 # Maintainers
 
