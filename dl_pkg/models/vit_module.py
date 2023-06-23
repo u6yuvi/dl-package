@@ -189,22 +189,26 @@ class ViT(nn.Sequential):
 class VitLitModule(LightningModule):
     def __init__(
         self,
+        net,
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler,
         num_classes=10,
+        topk=3
     ):
         super().__init__()
 
-        self.save_hyperparameters(logger=False, ignore=["model"])
+        self.save_hyperparameters(logger=False, ignore=["net"])
 
-        self.model = ViT(
-            in_channels=3,
-            patch_size=4,
-            emb_size=64,
-            img_size=32,
-            depth=6,
-            num_classes=num_classes,
-        )
+        self.model = net
+
+        # self.model = ViT(
+        #     in_channels=3,
+        #     patch_size=4,
+        #     emb_size=64,
+        #     img_size=32,
+        #     depth=6,
+        #     num_classes=num_classes,
+        # )
 
         # loss function
         self.criterion = torch.nn.CrossEntropyLoss()
@@ -235,6 +239,13 @@ class VitLitModule(LightningModule):
         loss = self.criterion(logits, y)
         preds = torch.argmax(logits, dim=1)
         return loss, preds, y
+
+    def model_predict_step(self, batch: Any):
+        x, y = batch
+        logits = self.forward(x)
+        return logits
+
+
 
     def training_step(self, batch: Any, batch_idx: int):
         loss, preds, targets = self.model_step(batch)
@@ -286,6 +297,18 @@ class VitLitModule(LightningModule):
 
     def on_test_epoch_end(self):
         pass
+
+    def predict_step(self, batch: Any, batch_idx: int, dataloader_idx: int = 0) -> Any:
+
+        logits = self.model_predict_step(batch)
+        prob = F.softmax(logits, dim=1)
+        top_p, top_class = prob.topk(self.hparams.topk, dim = 1)
+        #predictions = torch.nn.functional.softmax(logits, dim=1)
+        return top_p.cpu().tolist()
+
+
+
+
 
     def configure_optimizers(self):
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
