@@ -26,8 +26,35 @@ docker run --name dl_container --rm u6yuvi/dl-package:latest dl_pkg_train
 ```
 ![](images/training.png)
 
+## Run Experiments using Hydra 
 
-## EVALUATION
+1. Create an experiment hydra file overiding train.yaml file
+![](images/experiment_cofig.png)
+
+
+2. Run training and evaluation with experiment config
+
+```
+If "experiment : null added in the train.yaml file which will overide the configuration
+dl_pkg_trian experiment=cat_dog
+
+If "experiment:null" not added in train.yaml.Override the train.yaml using
+dl_pkg_train +experiment=cat_dog
+```
+
+3. Run Evaluation using experiment config
+```
+dl_pkg_eval +experiment=cat_dog
+![](images/eval.png)
+```
+4. Run Prediction using experiment config
+```
+Load an image from data/Petimages_split/predict/test
+dl_pkg_predict +experiment=cat_dog
+![](images/predict.png)
+```
+
+## Evaluation
 1. Clone project 
 ```
 git clone https://github.com/u6yuvi/dl-package.git dl-package

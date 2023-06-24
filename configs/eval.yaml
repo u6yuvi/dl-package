@@ -11,4 +11,4 @@ model:
 
 ckpt_dir: ${hydra:runtime.cwd}/outputs/
 ckpt_file: 2023-06-21/00-32-27/checkpoints/epoch_000.ckpt
-ckpt_path: ${ckpt_dir}/${ckpt_file}
+test_ckpt_path: ${ckpt_dir}/${ckpt_file}

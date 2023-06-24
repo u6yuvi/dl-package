@@ -27,7 +27,7 @@ def predict(cfg: DictConfig) -> Tuple[dict, dict]:
 
 
     log.info("Starting Prediction!")
-    preds = trainer.predict(model=model, datamodule=datamodule, return_predictions = True,  ckpt_path=cfg.ckpt_path)
+    preds = trainer.predict(model=model, datamodule=datamodule, return_predictions = True,  ckpt_path=cfg.test_ckpt_path)
     log.info(f"Prediction Values <{preds}>")
     print(f'Top-k[{cfg.model.topk}] preds : {preds}')
 

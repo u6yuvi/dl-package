@@ -39,7 +39,7 @@ def eval(cfg: DictConfig) -> Tuple[dict, dict]:
 
 
     log.info("Starting testing!")
-    trainer.test(model=model, datamodule=datamodule, ckpt_path=cfg.ckpt_path)
+    trainer.test(model=model, datamodule=datamodule, ckpt_path=cfg.test_ckpt_path)
     test_metrics = trainer.callback_metrics
 
     # if cfg.get("test"):
