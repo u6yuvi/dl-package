@@ -50,7 +50,7 @@ dl_pkg_eval +experiment=cat_dog
 
 4. Run Prediction using experiment config
 ```
-Load an image from data/Petimages_split/predict/test
+Load an image from data/predict/test
 dl_pkg_predict +experiment=cat_dog
 ```
 ![](images/predict.png)
