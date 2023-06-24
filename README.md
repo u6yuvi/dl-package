@@ -45,14 +45,15 @@ dl_pkg_train +experiment=cat_dog
 3. Run Evaluation using experiment config
 ```
 dl_pkg_eval +experiment=cat_dog
-![](images/eval.png)
 ```
+![](images/eval.png)
+
 4. Run Prediction using experiment config
 ```
 Load an image from data/Petimages_split/predict/test
 dl_pkg_predict +experiment=cat_dog
-![](images/predict.png)
 ```
+![](images/predict.png)
 
 ## Evaluation
 1. Clone project 
