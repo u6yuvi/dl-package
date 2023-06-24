@@ -9,6 +9,7 @@
 2. Model Training and Evaluation using [Pytorch Lightning Framework](https://lightning.ai/).
 3. Experiments Configuration using [Hydra Template](https://hydra.cc/).
 4. Experiment Logging using [Tensorboard](https://www.tensorflow.org/tensorboard/get_started).
+5. Data Versioning using Data Version Control
 
 
 ## Getting Started
@@ -184,6 +185,12 @@ scripts/split_dataset.py
 #Delete empty files
 find . -type f -empty -print -delete
 ```
+
+# DVC Configuration
+```
+dvc remote add -d local <path_to_local_directory>
+```
+Read more about [DVC](https://dvc.org/doc)
 
 # Maintainers
 
