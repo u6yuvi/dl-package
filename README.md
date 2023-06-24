@@ -188,8 +188,16 @@ find . -type f -empty -print -delete
 
 # DVC Configuration
 ```
+#Set remote storage for storing data and model artifacts
 dvc remote add -d local <path_to_local_directory>
+
+#Push data to remote directory
+dvc push data outputs
+
+#Pull data from remote directory
+dvc pull
 ```
+
 Read more about [DVC](https://dvc.org/doc)
 
 # Maintainers
