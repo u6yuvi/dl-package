@@ -29,7 +29,7 @@ model:
     #num_classes : 2
   
   num_classes: 2
-  topk: 2
+  topk: 4
 
 data:
   train_dataset:
