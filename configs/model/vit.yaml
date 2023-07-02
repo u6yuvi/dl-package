@@ -25,4 +25,3 @@ net:
   img_size : 32
   depth : 6
   num_classes : ${model.num_classes}
-

@@ -1,76 +1,56 @@
-# version: '3.9'
-# services:
-#   app:
-#     build:
-#       context: ..
-#       dockerfile: .devcontainer/Dockerfile
-
-#     # volumes:
-#     #   # Use a named volume for the source code
-#     #   - my-app:/workspace
-#     #   # Persist VS Code extensions between rebuilds
-#     #   - vscode-extensions:/root/.vscode-server/extensions
-#     #   # And/or for VS Code Insiders
-#     #   - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
-#     volumes:
-#       - .:/workspace:cached
-#     # volumes:
-#     #   # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
-#     #   # - ..:/workspace:cached
-#     # volumes:
-#     #   - ../:/workspace/
-#     #   # - ./mnist/model:/workspace/mnist/model
-#     #   # - ./mnist/data:/workspace/mnist/data
-#     #   # - mnist/model:/workspace/mnist/model
-#     #   # - mnist/data:/workspace/mnist/data
-#     restart: on-failure
-
-# # volumes:
-# #   my-app:
-# #   vscode-extensions:
-# #   vscode-extensions-insiders:
-
-
-version: '3'
-
+version: '3.9'
 services:
-  app:
-    # Using a Dockerfile is optional, but included for completeness.
-    build: 
-      context: .
-      dockerfile: Dockerfile
-      # [Optional] You can use build args to set options. e.g. 'VARIANT' below affects the image in the Dockerfile
-      args: 
-        VARIANT: buster
-
+  train:
+    build:
+      context: ../
+      dockerfile: .devcontainer/Dockerfile
+    container_name: dlpkg
     volumes:
-      # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
-      - ..:/workspace:cached
+      - ../logs:/workspace/logs
 
-      # Uncomment the next line to use Docker from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker-compose for details.
-      # - /var/run/docker.sock:/var/run/docker.sock 
+    #command: dl_pkg_train experiment=mnist
+    command: dl_pkg_train -m hydra/launcher=joblib hydra.launcher.n_jobs=5 experiment=cifar_vit model.net.patch_size=1,2,4,8,16 data.num_workers=0
 
-    # Overrides default command so things don't shut down after the process ends.
-    command: /bin/sh -c "while sleep 1000; do :; done"  
+  ml_flow:
+    build:
+      context: ./
+      dockerfile: Dockerfile.experiment
+    container_name: mlflow
+    volumes:
+      - ../logs/mlflow:/workspace/
+    expose:
+      - 5000
+    ports:
+      - 5001:5000
+    command: mlflow ui -h 0.0.0.0
+    # ports:
+    #   - 5001:5000
+    #   - 43801:43800
+    #   - 6007:6006
+    # command: starter_script.sh
 
-    # Runs app on the same network as the service container, allows "forwardPorts" in devcontainer.json function.
-    network_mode: service:another-service
-    
-    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
-    # (Adding the "ports" property to this file will not forward from a Codespace.)
+  aim:
+    build:
+      context: ./
+      dockerfile: Dockerfile.experiment
+    container_name: aim
+    volumes:
+      - ../logs/.aim:/workspace/.aim
+    expose:
+      - 43800
+    ports:
+      - 43801:43800
+    command: aim up -h 0.0.0.0
 
-    # Uncomment the next line to use a non-root user for all processes - See https://aka.ms/vscode-remote/containers/non-root for details.
-    # user: vscode
-
-    # Uncomment the next four lines if you will use a ptrace-based debugger like C++, Go, and Rust.
-    # cap_add:
-    #   - SYS_PTRACE
-    # security_opt:
-    #   - seccomp:unconfined
-    
-  # You can include other services not opened by VS Code as well
-  another-service:
-    image: mongo:latest
-    restart: unless-stopped
-
-    # As in the "app" service, use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+  tensorboard:
+    build:
+      context: ./
+      dockerfile: Dockerfile.experiment
+    container_name: tensorboard
+    volumes:
+      - ../logs/tensorboard/:/workspace/
+    expose:
+      - 6006
+    ports:
+      - 6007:6006
+    command: tensorboard --logdir . --host 0.0.0.0
