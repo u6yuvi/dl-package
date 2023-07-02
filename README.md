@@ -69,7 +69,8 @@ dl_pkg_train -m hydra/launcher=joblib hydra.launcher.n_jobs=4 experiment=cifar_v
 #experiment logs are saved under logs/ folder.
 
 2. Run AIM UI
-```aim up
+```
+aim up
 ```
 
 3. Run Tensorboard
@@ -102,9 +103,6 @@ docker-compose  -f .devcontainer/docker-compose_copy.yml  up --build
 
 Eg: cifar10_vit experiment on VIT model patch_size= 1,2,4,8,16
 ![](images/aim_experiment.png)
-
-
-Running in docker 
 
 ## Evaluation
 1. Clone project 
