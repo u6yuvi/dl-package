@@ -22,7 +22,7 @@ hydra-optuna-sweeper==1.2.0
 mlflow
 tensorboard
 # comet-ml
-# aim>=3.16.2  # no lower than 3.16.2, see https://github.com/aimhubio/aim/issues/2550
+aim>=3.16.2  # no lower than 3.16.2, see https://github.com/aimhubio/aim/issues/2550
 
 # --------- deployment ------ #
 fastapi
@@ -34,3 +34,13 @@ rich            # beautiful text formatting in terminal
 pytest          # tests
 black
 # sh            # for running bash commands in some tests (linux/macos only)
+
+# ----------data version ------#
+dvc[all]
+hydra-joblib-launcher
+coloredlogs
+torchvision
+# aim
+mlflow
+tensorboard
+hydra_colorlog
