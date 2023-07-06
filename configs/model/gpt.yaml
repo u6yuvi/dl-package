@@ -1,0 +1,23 @@
+_target_: dl_pkg.models.gpt_module.GPTLitModule
+
+
+# num_classes: 1000
+# topk: 5
+
+block_size : 4
+
+net:
+  _target_ : dl_pkg.models.gpt_module.GPT
+  vocab_size : 100277
+  block_size : 4
+  n_embed : 64
+  n_decoder_blocks : 4
+  decoder_block:
+    _target_: dl_pkg.models.gpt_module.GPTDecoderBlock
+    emb_size: 768
+    drop_p: 0.1
+    forward_expansion: 4
+    forward_drop_p: 0
+    n_heads: 4
+
+

@@ -44,3 +44,6 @@ torchvision
 mlflow
 tensorboard
 hydra_colorlog
+
+tiktoken
+torch-summary
