@@ -1,15 +1,15 @@
-_target_: dl_pkg.models.gpt_module1.GPTLitModule
+_target_: dl_pkg.models.gpt_module.GPTLitModule
 
 block_size : 8
 
 net:
-  _target_ : dl_pkg.models.gpt_module1.GPT
+  _target_ : dl_pkg.models.gpt_module.GPT
   vocab_size : 100277
   block_size : ${model.block_size}
   n_embed : 64
   n_decoder_blocks : 4
   decoder_block:
-    _target_: dl_pkg.models.gpt_module1.GPTDecoderBlock
+    _target_: dl_pkg.models.gpt_module.GPTDecoderBlock
     emb_size: ${model.net.n_embed}
     drop_p: 0.1
     forward_expansion: 4
