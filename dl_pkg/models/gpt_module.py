@@ -23,7 +23,6 @@ from torchmetrics import MaxMetric, MeanMetric, MinMetric
 
 from typing import Any, Optional
 
-
 class MultiHeadAttention(nn.Module):
     def __init__(self, n_heads, n_dim, dropout=0.1):
         super(MultiHeadAttention, self).__init__()
@@ -85,7 +84,6 @@ class MultiHeadAttention(nn.Module):
 
         return out
 
-
 class ResidualAdd(nn.Module):
     def __init__(self, fn):
         super(ResidualAdd, self).__init__()
@@ -101,8 +99,6 @@ class ResidualAdd(nn.Module):
 
         return out
 
-
-
 class FeedForwardBlock(nn.Sequential):
     def __init__(self, emb_size = 768, expansion = 4, drop_p = 0.):
         super(FeedForwardBlock, self).__init__(
@@ -111,8 +107,6 @@ class FeedForwardBlock(nn.Sequential):
             nn.Dropout(drop_p),
             nn.Linear(expansion * emb_size, emb_size)
         )
-
-
 class GPTDecoderBlock(nn.Module):
     def __init__(
         self,
@@ -147,32 +141,23 @@ class GPTDecoderBlock(nn.Module):
 
         return out
 
-
 class GPT(nn.Module):
-    def __init__(self, vocab_size, block_size, n_embed, n_decoder_blocks,decoder_block):
+    def __init__(self, vocab_size, block_size, n_embed):
         super(GPT, self).__init__()
 
-        self.vocab_size = vocab_size
         self.block_size = block_size
-        self.n_embed = n_embed
-        # self.n_heads = n_heads
-        self.n_decoder_block = n_decoder_blocks
-        self.decoder_block = decoder_block
 
-        self.token_embedding_table = nn.Embedding(self.vocab_size, self.n_embed)
-        self.position_embedding_table = nn.Embedding(self.block_size, self.n_embed)
-
-        # self.blocks = nn.ModuleList([
-        #     GPTDecoderBlock(emb_size=n_embed, n_heads=4),
-        #     GPTDecoderBlock(emb_size=n_embed, n_heads=4),
-        #     GPTDecoderBlock(emb_size=n_embed, n_heads=4),
-        #     GPTDecoderBlock(emb_size=n_embed, n_heads=4),
-        # ])
-
-        self.blocks = nn.ModuleList([self.decoder_block for i in range(self.n_decoder_block)])
-        self.ln = nn.LayerNorm(self.n_embed)
-        self.ffwd = FeedForwardBlock(self.n_embed)
-        self.lm_head = nn.Linear(self.n_embed, self.vocab_size)
+        self.token_embedding_table = nn.Embedding(vocab_size, n_embed)
+        self.position_embedding_table = nn.Embedding(block_size, n_embed)
+        self.blocks = nn.ModuleList([
+            GPTDecoderBlock(emb_size=n_embed, n_heads=4),
+            GPTDecoderBlock(emb_size=n_embed, n_heads=4),
+            GPTDecoderBlock(emb_size=n_embed, n_heads=4),
+            GPTDecoderBlock(emb_size=n_embed, n_heads=4),
+        ])
+        self.ln = nn.LayerNorm(n_embed)
+        self.ffwd = FeedForwardBlock(n_embed)
+        self.lm_head = nn.Linear(n_embed, vocab_size)
 
         # query: what am i looking for?
         # key: what do i contain?
@@ -224,10 +209,8 @@ class GPT(nn.Module):
 class GPTLitModule(LightningModule):
     def __init__(
         self,
-        net: GPT,
         learning_rate=1e-3,
-        # n_embed=64,
-        block_size=8
+        n_embed=64
     ):
         super().__init__()
 
@@ -238,12 +221,11 @@ class GPTLitModule(LightningModule):
 
         self.learning_rate = learning_rate
 
-        # self.model = GPT(
-        #     vocab_size=enc.n_vocab,
-        #     block_size=block_size,
-        #     n_embed=self.hparams.n_embed
-        # )
-        self.model = net
+        self.model = GPT(
+            vocab_size=100277,
+            block_size=8,
+            n_embed=self.hparams.n_embed
+        )
 
         # for averaging loss across batches
         self.train_loss = MeanMetric()
@@ -253,7 +235,7 @@ class GPTLitModule(LightningModule):
         # for tracking best so far validation loss
         self.val_loss_best = MinMetric()
 
-        self.register_buffer("mask", torch.tril(torch.ones(block_size, block_size)) == 0)
+        self.register_buffer("mask", torch.tril(torch.ones(8, 8)) == 0)
 
     def forward(self, x: torch.Tensor, targets: torch.Tensor = None):
         mask = self.mask if targets is not None else None
@@ -309,4 +291,3 @@ class GPTLitModule(LightningModule):
         optimizer = torch.optim.Adam(params=self.parameters(), lr=self.learning_rate)
 
         return {"optimizer": optimizer}
-
