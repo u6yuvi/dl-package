@@ -47,6 +47,6 @@ hydra:
     params:
       model.net.block_size: choice(4, 6, 8, 10)
       model.net.n_embed: choice(32, 64, 128)
-      model.net.decoder_block.n_heads: choice(2, 4, 6, 8)
+      model.net.decoder_block.n_heads: choice(2, 4, 8)
       model.net.decoder_block.drop_p: choice(.01, .1, .2)
       model.net.n_decoder_blocks: choice(2, 4, 6, 8)
