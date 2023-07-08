@@ -15,7 +15,7 @@ defaults:
   # experiment configs allow for version control of specific hyperparameters
   # e.g. best hyperparameters for given model and datamodule
   - experiment: null
-
+  - hparams_search: null
 # task name, determines output directory path
 task_name: "train"
 
@@ -26,7 +26,7 @@ train: True
 # lightning chooses best weights based on the metric specified in checkpoint callback
 test: True
 
-tuner: True
+tuner: False
 # compile model for faster training with pytorch 2.0
 compile: False
 
