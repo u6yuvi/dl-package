@@ -1,6 +1,6 @@
 _target_: dl_pkg.models.gpt_module.GPTLitModule
 
-block_size : 8
+block_size : 4
 
 net:
   _target_ : dl_pkg.models.gpt_module.GPT
