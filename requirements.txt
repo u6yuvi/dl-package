@@ -47,3 +47,7 @@ hydra_colorlog
 
 tiktoken
 torch-summary
+
+#optuna
+hydra-optuna-sweeper==1.2.0
+optuna==2.10.1
