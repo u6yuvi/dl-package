@@ -97,13 +97,13 @@ class HarryPotterDataModule(LightningDataModule):
         self.data_val: Optional[Dataset] = None
 
     def prepare_data(self):
-        HarryPotterDataset(self.hparams.data_dir, download=True, block_size=8)
+        HarryPotterDataset(self.hparams.data_dir, download=True, block_size=self.hparams.block_size)
 
     def setup(self, stage: Optional[str] = None):
         # load and split datasets only if not loaded already
         if not self.data_train and not self.data_val:
             dataset = HarryPotterDataset(
-                self.hparams.data_dir, download=False, block_size=8)
+                self.hparams.data_dir, download=False, block_size=self.hparams.block_size)
 
             self.data_train, self.data_val = random_split(
                 dataset=dataset,
