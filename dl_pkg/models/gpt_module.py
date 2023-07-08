@@ -298,7 +298,7 @@ class GPTLitModule(LightningModule):
         self.val_loss_best(loss)  # update best so far val loss
         # log `val_acc_best` as a value through `.compute()` method, instead of as a metric object
         # otherwise metric would be reset by lightning after each epoch
-        self.log("val/loss_best", self.val_loss_best.compute(), sync_dist=True, prog_bar=True)
+        self.log("val/loss_best", self.val_loss_best.compute(), sync_dist=True, prog_bar=True, on_step=False)
 
     def configure_optimizers(self):
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
