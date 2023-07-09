@@ -290,8 +290,8 @@ class GPTLitModule(LightningModule):
 
         # update and log metrics
         self.val_loss(loss)
-        # self.log("val/loss", self.val_loss, on_step=False,
-        #          on_epoch=True, prog_bar=True)
+        self.log("val/loss", self.val_loss, on_step=False,
+                 on_epoch=True, prog_bar=True)
 
     def on_validation_epoch_end(self):
         loss = self.val_loss.compute()  # get current val loss
