@@ -12,7 +12,7 @@
     1. [Tensorboard](https://www.tensorflow.org/tensorboard/get_started).
     2. [Mlflow](https://github.com/mlflow/mlflow/)
     3. [Aim](https://github.com/aimhubio/aim)
-5. [Run Hyperaparameter Search using Lightning, Optuna and Hydra](https://github.com/u6yuvi/dl-package/tree/main#run-hyperparameter-tuning-with-hydra-and-optuna)
+5. [Run Hyperaparameter Search using Lightning, Optuna and Hydra](https://github.com/u6yuvi/dl-package/tree/main#run-hyperparameter-tuning-with-pytorch-lightning-hydra-and-optuna)
 6. Data Versioning using Data Version Control
 
 
