@@ -106,7 +106,12 @@ dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
 
 Results saved under logs/
 
+AIM Dashboard
+
 ![](images/aim_h_search.png)
+
+
+Tensorboard Dashboard
 
 ![](images/tensorboard_hparam.png)
 
