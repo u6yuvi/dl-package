@@ -1,6 +1,7 @@
 _target_: dl_pkg.models.gpt_module.GPTLitModule
 
 block_size : 4
+learning_rate: 0.001
 
 net:
   _target_ : dl_pkg.models.gpt_module.GPT
