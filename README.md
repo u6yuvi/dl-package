@@ -8,7 +8,7 @@
 1. Supports [Pytorch Custom Models](https://pytorch.org/vision/stable/models.html), [Huggingface Models](https://huggingface.co/models) and [Timm Models](https://github.com/huggingface/pytorch-image-models).
 2. Model Training and Evaluation using [Pytorch Lightning Framework](https://lightning.ai/).
 3. [Docker Container Based Model Training and Evaluation](https://github.com/u6yuvi/dl-package/tree/main#using-docker-containers)
-3. [Experiments Configuration using [Hydra Template](https://hydra.cc/)](https://github.com/u6yuvi/dl-package/tree/main#run-experiments-using-hydra).
+3. Experiments Configuration using [Hydra Template](https://hydra.cc/).
 4. Experiment Logging using:
     1. [Tensorboard](https://www.tensorflow.org/tensorboard/get_started).
     2. [Mlflow](https://github.com/mlflow/mlflow/)
@@ -85,6 +85,8 @@ mlflow ui
 ```
 
 ## Run Hyperparameter Tuning with Pytorch Lightning Hydra and Optuna
+
+Refer [colab notebook](https://colab.research.google.com/drive/17HWH-pTgcsTJOX8X5XGGLTCuVQ1Zwi0l?usp=sharing)
 
 1. LR Finder and Batch Size Finder using Pytorch Ligthning Callback
 
