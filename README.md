@@ -7,7 +7,8 @@
 
 1. Supports [Pytorch Custom Models](https://pytorch.org/vision/stable/models.html), [Huggingface Models](https://huggingface.co/models) and [Timm Models](https://github.com/huggingface/pytorch-image-models).
 2. Model Training and Evaluation using [Pytorch Lightning Framework](https://lightning.ai/).
-3. Experiments Configuration using [Hydra Template](https://hydra.cc/).
+3. [Docker Container Based Model Training and Evaluation](https://github.com/u6yuvi/dl-package/tree/main#using-docker-containers)
+3. [Experiments Configuration using [Hydra Template](https://hydra.cc/)](https://github.com/u6yuvi/dl-package/tree/main#run-experiments-using-hydra).
 4. Experiment Logging using:
     1. [Tensorboard](https://www.tensorflow.org/tensorboard/get_started).
     2. [Mlflow](https://github.com/mlflow/mlflow/)
@@ -97,17 +98,19 @@ mlflow ui
 ![](images/hparam_optuna.png)
 
 
-3. Run Hyperparameter Search using Optuna and  
+3. Run Hyperparameter Search using Optuna and Hydra
 ```
 dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
 ```
 
 4. Results of Hyperparameter Search 
+
 ![](images/best_h_param.png)
 
 5. Compare the Hyperparameter Experiment results on AIM, Tensorboard or MLFlow
 
-```Results saved under logs/
+```
+Hyperparameter Results saved under logs/
 ```
 
 **AIM Dashboard**
