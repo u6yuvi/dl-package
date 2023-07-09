@@ -82,6 +82,32 @@ tensorboard --logdir=logs/tensorboard
 mlflow ui
 ```
 
+## Run Hyperparameter Tuning with Hydra and Optuna
+1. Create hyperparameter search config file 
+![](images/hparam_optuna.png)
+
+2. Run Hyperparameter Search 
+```
+dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
+```
+
+3. LR Finder and Batch Size Finder using Pytorch Ligthning Callback
+
+Refer train.py for lr-finder and batch size finder callback
+
+Enable or disable using tuner flag in train.yaml file
+
+![](images/lr_finder.png)
+
+4. Results of Hyperparameter Search 
+![](images/best_h_param.png)
+
+5. Compare the Hyperparameter Experiment results on AIM, Tensorboard or MLFlow
+Results saved under logs/
+
+![](images/aim_h_search.png)
+
+
 ### Using Docker Containers
 
 1. Refer docker-compose.yml for more reference
@@ -267,3 +293,6 @@ docker compose run -v ${pwd}/logs <image_name> bash
 #run experiment
 dl_pkg_train -m hydra/launcher=joblib hydra.launcher.n_jobs=4 experiment=cifar_vit model.net.patch_size=1,2,4,8,16 data.num_workers=0
 ```
+
+
+model.net.block_size=4 model.net.n_embed=128 model.net.decoder_block.n_heads=2 model.net.decoder_block.drop_p=0.01 model.net.n_decoder_blocks=4 hparams_search=cifar10_optuna data.num_workers=4 logger=many_loggers
