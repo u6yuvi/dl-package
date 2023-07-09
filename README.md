@@ -12,7 +12,8 @@
     1. [Tensorboard](https://www.tensorflow.org/tensorboard/get_started).
     2. [Mlflow](https://github.com/mlflow/mlflow/)
     3. [Aim](https://github.com/aimhubio/aim)
-5. Data Versioning using Data Version Control
+5. [Run Hyperaparameter Search using Lightning, Optuna and Hydra](https://github.com/u6yuvi/dl-package/tree/main#run-hyperparameter-tuning-with-hydra-and-optuna)
+6. Data Versioning using Data Version Control
 
 
 ## Getting Started
@@ -82,16 +83,9 @@ tensorboard --logdir=logs/tensorboard
 mlflow ui
 ```
 
-## Run Hyperparameter Tuning with Hydra and Optuna
-1. Create hyperparameter search config file 
-![](images/hparam_optuna.png)
+## Run Hyperparameter Tuning with Pytorch Lightning Hydra and Optuna
 
-2. Run Hyperparameter Search 
-```
-dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
-```
-
-3. LR Finder and Batch Size Finder using Pytorch Ligthning Callback
+1. LR Finder and Batch Size Finder using Pytorch Ligthning Callback
 
     - Refer train.py for lr-finder and batch size finder callbacks
 
@@ -99,19 +93,29 @@ dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
 
 ![](images/lr_finder.png)
 
+2. Create hyperparameter search config file for model parameters
+![](images/hparam_optuna.png)
+
+
+3. Run Hyperparameter Search using Optuna and  
+```
+dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
+```
+
 4. Results of Hyperparameter Search 
 ![](images/best_h_param.png)
 
 5. Compare the Hyperparameter Experiment results on AIM, Tensorboard or MLFlow
 
-Results saved under logs/
+```Results saved under logs/
+```
 
-AIM Dashboard
+**AIM Dashboard**
 
 ![](images/aim_h_search.png)
 
 
-Tensorboard Dashboard
+**Tensorboard Dashboard**
 
 ![](images/tensorboard_hparam.png)
 
