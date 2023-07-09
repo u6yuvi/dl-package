@@ -93,9 +93,9 @@ dl_pkg_train hparams_search=gpt_optuna logger=many_loggers
 
 3. LR Finder and Batch Size Finder using Pytorch Ligthning Callback
 
-Refer train.py for lr-finder and batch size finder callback
+    - Refer train.py for lr-finder and batch size finder callbacks
 
-Enable or disable using tuner flag in train.yaml file
+    - Enable or disable using flag **tuner**  in train.yaml file
 
 ![](images/lr_finder.png)
 
@@ -103,9 +103,12 @@ Enable or disable using tuner flag in train.yaml file
 ![](images/best_h_param.png)
 
 5. Compare the Hyperparameter Experiment results on AIM, Tensorboard or MLFlow
+
 Results saved under logs/
 
 ![](images/aim_h_search.png)
+
+![](images/tensorboard_hparam.png)
 
 
 ### Using Docker Containers
