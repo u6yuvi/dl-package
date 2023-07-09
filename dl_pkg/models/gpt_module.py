@@ -235,7 +235,7 @@ class GPTLitModule(LightningModule):
         # this line allows to access init params with 'self.hparams' attribute
         # also ensures init params will be stored in ckpt
         # ignoring net as the model weights themselves are not a hyperparam
-        self.save_hyperparameters(logger=False, ignore=['model'])
+        self.save_hyperparameters(logger=False, ignore=['net'])
 
         self.learning_rate = learning_rate
 
@@ -290,8 +290,8 @@ class GPTLitModule(LightningModule):
 
         # update and log metrics
         self.val_loss(loss)
-        self.log("val/loss", self.val_loss, on_step=False,
-                 on_epoch=True, prog_bar=True)
+        # self.log("val/loss", self.val_loss, on_step=False,
+        #          on_epoch=True, prog_bar=True)
 
     def on_validation_epoch_end(self):
         loss = self.val_loss.compute()  # get current val loss
