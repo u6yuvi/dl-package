@@ -8,10 +8,11 @@ from omegaconf import DictConfig
 # from PIL import Image
 from torchvision import transforms
 from torch.nn import functional as F
+import logging
+logger = logging.getLogger(__name__)
+# from dl_pkg import utils
 
-from dl_pkg import utils
-
-log = utils.get_pylogger(__name__)
+# log = utils.get_pylogger(__name__)
 
 def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     """Demo function.
@@ -24,12 +25,12 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
 
     assert cfg.demo_ckpt_path
 
-    log.info("Running Demo")
+    logger.info("Running Demo")
 
-    log.info(f"Instantiating scripted model <{cfg.demo_ckpt_path}>")
+    logger.info(f"Instantiating scripted model <{cfg.demo_ckpt_path}>")
     model = torch.jit.load(cfg.demo_ckpt_path)
 
-    log.info(f"Loaded Model: {model}")
+    logger.info(f"Loaded Model: {model}")
 
 
     def recognize_cifar_image(image,cfg):
@@ -54,9 +55,9 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     demo = gr.Interface(fn=recognize_cifar_image,
              inputs=gr.Image(type="pil",shape=(cfg.model.net.img_size, cfg.model.net.img_size)),
              outputs=gr.Label(num_top_classes=10),
-             ).launch()
+             )
 
-    demo.launch(server_name = "0.0.0.0", server_port= 8080)
+    demo.launch(share=True,server_name = "0.0.0.0", server_port= 8080)
 
 @hydra.main(
     version_base="1.2", config_path="../configs", config_name="demo_traced.yaml"
