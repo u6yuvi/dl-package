@@ -1,6 +1,6 @@
 
-# FROM u6yuvi/pytorch-cpu
-FROM python:3.9.5-slim-buster
+FROM u6yuvi/pytorch-cpu
+# FROM python:3.9.5-slim-buster
 
 RUN pip3 install torch torchvision  --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
 
@@ -10,7 +10,10 @@ WORKDIR /workspace
 
 
 COPY ../../configs /workspace/configs
-COPY ../../logs/train/runs/2023-07-14_12-26-28/model.script.pt /workspace/
+COPY ../../logs/train/runs/2023-07-14_22-29-25/model.script.pt /workspace/
 COPY ../../dl_pkg/demo.py /workspace/dl_pkg/
 
+CMD ["python3","dl_pkg/demo.py"]
+
+EXPOSE 8080/tcp
 
