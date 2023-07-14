@@ -54,3 +54,15 @@ services:
     ports:
       - 6007:6006
     command: tensorboard --logdir . --host 0.0.0.0
+
+  
+  demo:
+    build:
+      context: ../  #to ensure it has access to all files under dl-package for copying anything in Dockerfile.demo
+      dockerfile: .devcontainer/Dockerfile.demo
+    container_name: demo
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    command: python3 dl_pkg/demo.py

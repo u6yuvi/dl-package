@@ -1,0 +1,16 @@
+
+# FROM u6yuvi/pytorch-cpu
+FROM python:3.9.5-slim-buster
+
+RUN pip3 install torch torchvision  --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip3 install gradio hydra-core==1.3.2 hydra-colorlog==1.2.0 hydra-optuna-sweeper==1.2.0
+
+WORKDIR /workspace
+
+
+COPY ../../configs /workspace/configs
+COPY ../../logs/train/runs/2023-07-14_12-26-28/model.script.pt /workspace/
+COPY ../../dl_pkg/demo.py /workspace/dl_pkg/
+
+
