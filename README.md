@@ -16,7 +16,7 @@
 5. [Run Hyperaparameter Search using Lightning, Optuna and Hydra](https://github.com/u6yuvi/dl-package/tree/main#run-hyperparameter-tuning-with-pytorch-lightning-hydra-and-optuna)
 6. Data Versioning using Data Version Control
 7. Serializable and optimizable Pytorch models using TorchScript
-8. Build & Share Model Demos using Gradio
+8. [Build & Share Model Demos using Gradio](https://github.com/u6yuvi/dl-package#build--share-model-demos-using-gradio)
 
 
 ## Getting Started
@@ -165,41 +165,41 @@ docker run --name dl_container --rm u6yuvi/dl-package:latest dl_pkg_eval ckpt_fi
 ## Build & Share Model Demos using Gradio
 
 ## Steps to reproduce
-1. Train AND serialise your choice of model using Pytorch Lightning and Torch Script
+1. Train and serialise your choice of model using Pytorch Lightning and Torch Script
 ```
 dl_pkg_train experiment=cifar_vit
 ```
-Refer configs/experiment/cifar_vit for setting experiment parameters
-When using TorchScript : ensure jit:True and provide a jit_model name under jit_model_path
+Refer `configs/experiment/cifar_vit` for setting experiment parameters
+When using TorchScript : ensure `jit:True` and provide a model path name under `jit_model_path`
 
 Torch Script model will be saved under the given path
 ![](images/torchscript.png)
 
 2. Run Demo in Local
 
-    1. add the torchscript checkpoint path in `demo_ckpt_path` under configs/demo_traced.yaml
-    2. Update the demo.py to configure Gradio UI, Loading model checkpoint and Model Inference Code
+    1. add the torchscript checkpoint path in `demo_ckpt_path` under `configs/demo_traced.yaml`
+    2. Update the `demo.py` to configure Gradio UI, Loading model checkpoint and Model Inference Code
 ```
 #run the gradio app 
 dl_pkg_demo
 ```
-Go to 0.0.0.0:8080  for Gardio App
+Gradio App running at - **0.0.0.0:8080** 
 ![](images/gradio_local.png)
 
-3. Run Demo in Dockcer Container
+3. Run Demo in Docker Container
 
 ```
 #Build the docker image
 docker compose  -f .devcontainer/docker-compose.yml up --build demo
 #provide the model-checkpoint path in the Dockerfile.demo
-# run the demo in docker
+#run the gradio demo in docker
 docker run -p 8080:8080 <image_name>:latest 
-```
-Example of Demo docker for Cifar VIT Experiment
-```
+
+#Docker command to run Gradio Demo for Cifar VIT Experiment
 docker run -p 8080:8080 u6yuvi/demo_cpu:latest
 ```
 ![](images/docker_demo.png)
+
 
 ### Development in DEV Container with VS Code
 #### Install Dependencies 
