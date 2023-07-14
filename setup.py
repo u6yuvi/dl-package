@@ -16,7 +16,8 @@ setup(
         "console_scripts": [
             "dl_pkg_train = dl_pkg.train:main",
             "dl_pkg_eval = dl_pkg.eval:main",
-            "dl_pkg_predict = dl_pkg.predict:main"
+            "dl_pkg_predict = dl_pkg.predict:main",
+            "dl_pkg_demo = dl_pkg.demo:main"
         ]
     },
 )

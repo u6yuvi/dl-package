@@ -78,7 +78,8 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
 
         log.info("Starting scripting!")
         scripted_model = model.to_torchscript(method="script")
-        torch.jit.save(scripted_model, "model.script.pt")
+        torch.jit.save(scripted_model, cfg.get("jit_model_path"))
+        log.info(f'Scripting complete.Checkpoint saved at {cfg.get("jit_model_path")}')
 
     train_metrics = trainer.callback_metrics
 

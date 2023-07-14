@@ -35,6 +35,9 @@ data:
 
 compile: False
 
+jit: True
+jit_model_path: ${paths.jit_model_dir}/model.script.pt
+
 logger:
   mlflow:
     tags: ${tags}
@@ -43,3 +46,4 @@ logger:
     experiment: ${experiment_name}
   tensorboard:
     name: ${experiment_name}
+

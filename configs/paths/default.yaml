@@ -17,3 +17,5 @@ output_dir: ${hydra:runtime.output_dir}
 
 # path to working directory
 work_dir: ${hydra:runtime.cwd}
+
+jit_model_dir: ${paths.output_dir}
