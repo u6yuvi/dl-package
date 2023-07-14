@@ -24,8 +24,8 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
     if cfg.get("seed"):
         L.seed_everything(cfg.seed, workers=True)
 
-    #override dependent hyperparameters between datamodule and litmodule
-    cfg.data.block_size = cfg.model.block_size
+    # #override dependent hyperparameters between datamodule and litmodule
+    # cfg.data.block_size = cfg.model.block_size
 
     log.info(f"Instantiating datamodule <{cfg.data._target_}>")
     datamodule: LightningDataModule = hydra.utils.instantiate(cfg.data)
@@ -75,6 +75,10 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
         log.info("Starting training!")
         trainer.fit(model=model, datamodule=datamodule,
                     ckpt_path=cfg.get("train_ckpt_path"))
+
+        log.info("Starting scripting!")
+        scripted_model = model.to_torchscript(method="script")
+        torch.jit.save(scripted_model, "model.script.pt")
 
     train_metrics = trainer.callback_metrics
 
