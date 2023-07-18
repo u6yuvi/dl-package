@@ -1,0 +1,19 @@
+_target_: dl_pkg.models.gpt_scripted.GPTLitModule
+
+block_size : ${data.block_size}
+learning_rate: 0.001
+
+net:
+  _target_ : dl_pkg.models.gpt_scripted.GPT
+  vocab_size : 100277
+  block_size : ${model.block_size}
+  n_embed : 64
+  n_decoder_blocks : 4
+  decoder_block:
+    _target_: dl_pkg.models.gpt_scripted.GPTDecoderBlock
+    emb_size: ${model.net.n_embed}
+    drop_p: 0.1
+    forward_expansion: 4
+    forward_drop_p: 0
+    n_heads: 4
+
