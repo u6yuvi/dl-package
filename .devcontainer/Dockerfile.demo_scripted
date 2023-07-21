@@ -1,0 +1,18 @@
+
+FROM python:3.11-slim-buster
+
+RUN pip3 install torch torchvision  --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip3 install gradio tiktoken hydra-core==1.3.2 hydra-colorlog==1.2.0 hydra-optuna-sweeper==1.2.0 --no-cache-dir
+
+WORKDIR /workspace
+
+
+COPY ../../configs /workspace/configs
+COPY ../../models/hp_gpt_scripted.pt /workspace/models/
+COPY ../../dl_pkg/demo_gpt_scripted.py /workspace/dl_pkg/
+
+CMD ["python3","dl_pkg/demo_gpt_scripted.py"]
+
+EXPOSE 80/tcp
+
