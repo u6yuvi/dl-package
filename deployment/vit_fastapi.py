@@ -30,6 +30,7 @@ transforms = T.Compose([T.ToTensor(), T.Normalize((0.1307,), (0.3081,))])
 @app.get("/infer")
 async def infer(image: Annotated[bytes, File()]):
     img: Image.Image = Image.open(io.BytesIO(image))
+    img = img.convert("RGB")
     img = img.resize((32, 32))
 
     img_t = transforms(img).unsqueeze(0)
