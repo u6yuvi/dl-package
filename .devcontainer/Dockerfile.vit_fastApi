@@ -1,0 +1,35 @@
+
+FROM python:3.11-slim-buster
+
+RUN pip3 install torch torchvision  --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip3 install fastapi[all] tiktoken hydra-core==1.3.2 hydra-colorlog==1.2.0 hydra-optuna-sweeper==1.2.0 --no-cache-dir
+
+WORKDIR /workspace
+
+
+# COPY ../../configs /workspace/configs
+COPY ../../models/vit_scripted.pt /workspace/models/
+COPY ../../deployment/vit_fastapi.py /workspace/deployment/
+
+CMD ["uvicorn", "deployment.vit_fastapi:app", "--host", "0.0.0.0", "--port", "80"]
+
+EXPOSE 80/tcp
+
+#aws
+
+# FROM python:3.11-slim-buster
+
+# RUN pip3 install torch torchvision  --no-cache-dir --index-url https://download.pytorch.org/whl/cpu
+
+# RUN pip3 install gradio tiktoken boto3 --no-cache-dir
+
+# WORKDIR /workspace
+
+
+# COPY ./gpt_demo.py /workspace/
+
+# CMD ["python3","gpt_demo.py"]
+
+# EXPOSE 80/tcp
+
