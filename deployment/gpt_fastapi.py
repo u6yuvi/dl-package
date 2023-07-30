@@ -5,7 +5,6 @@ from typing import Annotated
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
-import torchvision.transforms as T
 import tiktoken
 
 app = FastAPI()
