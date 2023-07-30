@@ -17,6 +17,8 @@
 6. Data Versioning using Data Version Control
 7. Serializable and optimizable Pytorch models using TorchScript
 8. [Build & Share Model Demos using Gradio](https://github.com/u6yuvi/dl-package#build--share-model-demos-using-gradio)
+9. Deployment using AWS ECR + ECS
+10. Build Model Endpoints using FastAPI.Added codebase for GPT and VIT Model
 
 
 ## Getting Started
@@ -199,6 +201,30 @@ docker run -p 8080:8080 <image_name>:latest
 docker run -p 8080:8080 u6yuvi/demo_cpu:latest
 ```
 ![](images/docker_demo.png)
+
+## Build Model Endpoints using FastAPI
+
+1. Add FastAPI Endpoint
+```
+Refer deployment/gpt.fastapi.py && deployment/vit_fastapi.py
+```
+
+2. Build Docker Container with FastAPI
+```
+Refer .devcontainer/Dockerfile.gpt_fastApi && .devcontainer/Dockerfile.vit_fastApi
+```
+3. Interact with the Model Endpoint using Swagger UI
+```
+Go to https://<ip_address:80/docs>
+
+4. Interact with the Model Endpoint using Python request module
+
+Refer deployment/test_endpoint.py
+### Testing GPT Endpoint 
+![](images/gpt_pytest.png)
+
+### Testing VIT Endpoint
+![](images/vit_pytest.png)
 
 
 ### Development in DEV Container with VS Code

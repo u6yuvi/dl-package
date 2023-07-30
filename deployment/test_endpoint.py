@@ -3,12 +3,12 @@ import requests
 import ast
 
 request_cnt = 100
+url = "http://<aws-ip-address:80/infer>"
 
 def test_gpt_endpoint():
-
-
-    url = "http://0.0.0.0:80/infer"
-
+    '''
+    Test GPT Model Endpoint
+    '''
     
     headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -22,34 +22,19 @@ def test_gpt_endpoint():
 
 
 def test_vit_endpoint():
+    '''
+    Test VIT Model Endpoint
+    '''
 
+    payload = {}
 
-    url = "http://0.0.0.0:80/infer"
-
-    
-    headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
-    text = "Harry-Potter"
     for i in range(request_cnt):
-        payload = f'text={text}'
-        response = requests.request("GET", url, headers=headers, data=payload)
-        text = response.text
+        files=[
+        ('image',('photo-1559268950-2d7ceb2efa3a.jpeg',open('deployment/photo-1606567595334-d39972c85dbe.jpeg','rb'),'image/jpeg'))
+        ]
+        headers = {}
 
+        response = requests.request("GET", url, headers=headers, data=payload, files=files)
 
-import requests
+        assert len(ast.literal_eval(response.text).keys())==10 # cifar10 number of labels i.e 10
 
-url = "http://0.0.0.0:80/infer"
-
-payload = {}
-
-for i in range(request_cnt):
-    files=[
-    ('image',('photo-1559268950-2d7ceb2efa3a.jpeg',open('deployment/photo-1606567595334-d39972c85dbe.jpeg','rb'),'image/jpeg'))
-    ]
-    headers = {}
-
-    response = requests.request("GET", url, headers=headers, data=payload, files=files)
-
-    assert len(ast.literal_eval(response.text).keys())==10 # cifar10 number of labels i.e 10
