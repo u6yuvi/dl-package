@@ -216,6 +216,7 @@ Refer .devcontainer/Dockerfile.gpt_fastApi && .devcontainer/Dockerfile.vit_fastA
 3. Interact with the Model Endpoint using Swagger UI
 ```
 Go to https://<ip_address:80/docs>
+![](images/swagger_ui.png)
 ```
 4. Interact with the Model Endpoint using Python request module
 
