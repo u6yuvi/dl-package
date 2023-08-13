@@ -19,6 +19,8 @@
 8. [Build & Share Model Demos using Gradio](https://github.com/u6yuvi/dl-package#build--share-model-demos-using-gradio)
 9. Deployment using AWS ECR + ECS
 10. [Build Model Endpoints using FastAPI](https://github.com/u6yuvi/dl-package#build-model-endpoints-using-fastapi)
+11. Deployment using AWS ECR + ECS with Load Balancer.
+12. Stress Testing with Locust
 
 
 ## Getting Started
@@ -227,6 +229,27 @@ Refer deployment/test_endpoint.py
 
 ### Testing VIT Endpoint
 ![](images/vit_pytest.png)
+
+## Deployment using AWS ECR + ECS with Load Balancer.
+Refer ```deployment/clip_service```
+
+1. Deploying Clip Model on AWS FarGate Spot Instance with Load Balancer
+![](images/clip_lb.png)
+
+2. FrontEnd
+![](images/clip_frontend.png)
+
+3. Testing with PostMan
+![](images/clip_postman.png)
+
+4. Testing with FastAPI Docs
+![](images/clip_fastapi.png)
+
+5. Stress Testing with Locust
+![](images/clip_locust.png)
+
+Refer the video for more details:
+![Clip Service Demo](https://drive.google.com/file/d/1EEpFTNCvF-hdRjfST4gidxinx7rHTqph/view?usp=sharing)
 
 
 ### Development in DEV Container with VS Code
