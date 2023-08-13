@@ -249,7 +249,7 @@ Refer ```deployment/clip_service```
 ![](images/clip_locust.png)
 
 Refer the video for more details:
-![Clip Service Demo](https://drive.google.com/file/d/1EEpFTNCvF-hdRjfST4gidxinx7rHTqph/view?usp=sharing)
+[Clip Service Demo](https://drive.google.com/file/d/1EEpFTNCvF-hdRjfST4gidxinx7rHTqph/view?usp=sharing)
 
 
 ### Development in DEV Container with VS Code
