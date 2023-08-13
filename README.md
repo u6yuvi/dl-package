@@ -19,7 +19,7 @@
 8. [Build & Share Model Demos using Gradio](https://github.com/u6yuvi/dl-package#build--share-model-demos-using-gradio)
 9. Deployment using AWS ECR + ECS
 10. [Build Model Endpoints using FastAPI](https://github.com/u6yuvi/dl-package#build-model-endpoints-using-fastapi)
-11. Deployment using AWS ECR + ECS with Load Balancer.
+11. [Deployment using AWS ECR + ECS with Load Balancer](https://github.com/u6yuvi/dl-package#deployment-using-aws-ecr--ecs-with-load-balancer)
 12. Stress Testing with Locust
 
 
