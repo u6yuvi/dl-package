@@ -21,6 +21,7 @@
 10. [Build Model Endpoints using FastAPI](https://github.com/u6yuvi/dl-package#build-model-endpoints-using-fastapi)
 11. [Deployment using AWS ECR + ECS with Load Balancer](https://github.com/u6yuvi/dl-package#deployment-using-aws-ecr--ecs-with-load-balancer)
 12. Stress Testing with Locust
+13. Deployment on AWS Lambda [Serverless]
 
 
 ## Getting Started
@@ -250,6 +251,25 @@ Refer ```deployment/clip_service```
 
 Refer the video for more details:
 [Clip Service Demo](https://drive.google.com/file/d/1EEpFTNCvF-hdRjfST4gidxinx7rHTqph/view?usp=sharing)
+
+## Serverless Deployment on AWS Lambda with Onxx Runtime
+
+Steps:
+1. Export model into onnx format
+2. Create FastAPI endpoint for model inference
+3. Get Base Dockerfile for AWS Lambda Docker Deployment
+    1. https://docs.aws.amazon.com/lambda/latest/dg/python-image.html
+    2. Build Docker Image -``` docker build -t test .```
+    3. Run Docker Container - ```docker run --rm -it -p 8080:8080 test```
+4. Test Model Endpoint with Postman
+
+5. Push the docker image to AWS Private Repository
+6. Create AWS Lambda Function
+    1. Check the Lambda Endpoint using apigateway-aws-proxy [make the necessary changes to the request]
+    2. Change the default time from 3sec to 2 mins.
+    3. Change resource configured from 128 MB to 2048 MB
+7. Create AWS Gateway
+
 
 
 ### Development in DEV Container with VS Code
