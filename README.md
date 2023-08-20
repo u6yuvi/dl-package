@@ -301,7 +301,9 @@ Steps:
     https://github.com/u6yuvi/frontend-lambda/tree/main
     ```
 9. Deploy to Versel
+    Link - https://frontend-lambda.vercel.app/
     ![](images/versel_deploy.png)
+
 
 
 
