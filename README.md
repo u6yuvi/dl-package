@@ -254,24 +254,34 @@ Refer the video for more details:
 
 ## Serverless Deployment on AWS Lambda with Onxx Runtime
 
+Refer - `refer deployment/lambda_serverless`
 Steps:
-1. Export model into onnx format
-2. Create FastAPI endpoint for model inference
-3. Get Base Dockerfile for AWS Lambda Docker Deployment
+1. Export model into onnx format.
+2. Create FastAPI endpoint for model inference.
+3. Build Docker Container for AWS Lambda Docker Deployment
     1. https://docs.aws.amazon.com/lambda/latest/dg/python-image.html
     2. Build Docker Image -``` docker build -t test .```
     3. Run Docker Container - ```docker run --rm -it -p 8080:8080 test```
+    ![](images/onnx_build_docker.png)
 4. Test Model Endpoint with Postman
-
+![](images/check%20onnx_aws_lambda_docker_postman.png)
 5. Push the docker image to AWS Private Repository
+![](images/docker_registry_onnx.png)
 6. Create AWS Lambda Function
     1. Check the Lambda Endpoint using apigateway-aws-proxy [make the necessary changes to the request]
     2. Change the default time from 3sec to 2 mins.
     3. Change resource configured from 128 MB to 2048 MB
-7. Create AWS Gateway end point  to interact with the Lambda Function
-    1. Image
+    ![](images/aws_lambda_payload_changes.png)
+![](images/lambda_onnx.png)
+![](images/alws_lambda_test.png)
+7. Create AWS Gateway end point to interact with the Lambda Function
+    1. Add POST method
     2. Can also open all the endpoints like /health , /docs by using Function URL
-8. Create FrontEnd using FlowBite
+    ![](images/create_api_gateway.png)
+    ![](images/add_post_method.png)
+    2. Test with Postman
+    ![](images/test_api_gateway_postman.png)
+8. Create FrontEnd using FlowBite and Versel
     1. Install node -
     ```
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
@@ -286,6 +296,12 @@ Steps:
     ```
     npx create-next-app@latest
     ```
+    4. Push the frontend code to new repo that Versel will use to deploy
+    ```
+    https://github.com/u6yuvi/frontend-lambda/tree/main
+    ```
+9. Deploy to Versel
+    ![](images/versel_deploy.png)
 
 
 
