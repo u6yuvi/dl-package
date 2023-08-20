@@ -268,7 +268,25 @@ Steps:
     1. Check the Lambda Endpoint using apigateway-aws-proxy [make the necessary changes to the request]
     2. Change the default time from 3sec to 2 mins.
     3. Change resource configured from 128 MB to 2048 MB
-7. Create AWS Gateway
+7. Create AWS Gateway end point  to interact with the Lambda Function
+    1. Image
+    2. Can also open all the endpoints like /health , /docs by using Function URL
+8. Create FrontEnd using FlowBite
+    1. Install node -
+    ```
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+    nvm install 16
+    nvm use 16
+    ```
+    2. Install flowbite
+    ``` 
+    npm install flowbite flowbite-react --save
+    ```
+    3. Create project 
+    ```
+    npx create-next-app@latest
+    ```
+
 
 
 
