@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: classifer-deployment
+    labels:
+        app: classifier
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: classifier
+    template:
+        metadata:
+            labels:
+                app: classifier
+        spec:
+            containers:
+                - name: classifier
+                  image: classifier-k8s:latest
+                  imagePullPolicy: Never
+                  ports:
+                      - containerPort: 7860
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: classifier-service
+spec:
+    selector:
+        app: classifier
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 7860
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: classifier-ingress
+spec:
+    rules:
+        - host: classifier.localhost
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: classifier-service
+                            port:
+                                number: 80
