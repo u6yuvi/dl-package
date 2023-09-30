@@ -21,7 +21,8 @@
 10. [Build Model Endpoints using FastAPI](https://github.com/u6yuvi/dl-package#build-model-endpoints-using-fastapi)
 11. [Deployment using AWS ECR + ECS with Load Balancer](https://github.com/u6yuvi/dl-package#deployment-using-aws-ecr--ecs-with-load-balancer)
 12. Stress Testing with Locust
-13. Serverless Deployment on AWS Lambda with Versel UI (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
+13. [Serverless Deployment on AWS Lambda with Versel UI] (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
+14. Clip K8 Deployment
 
 
 ## Getting Started
@@ -305,6 +306,30 @@ Steps:
     ![](images/versel_deploy.png)
 
 
+# K8 Deployment on Minikube
+[K8 code cheetsheet](https://docs.google.com/document/d/1ghmQ2gNDZcyrnc0KYXRZ6GUAc_h0s0KQvX3xgACDKTE/edit?usp=sharing)
+
+1. Clip K8 Deployment
+	Refer deployment/clip_service for more details
+	
+Steps:
+
+1. Start minikube 
+2. Deploy Clip Service on Single pod using minikube
+
+![](images/k8-minikube-clip_deploy.png)
+
+3. Run munikube tunnel to connect minikube node to localhost
+Ensure to eable ingress addons 
+```
+minikube addons enable ingress 
+```
+![](images/k8-minikube-clip_tunnel.png)
+4. Test Prediction using FastApi Docs at clip.localhost
+![](images/k8-minikube-clip_fastapi.png)
+
+5. Check deployment status
+![](images/k8-minikube-clip_deploy_info.png)
 
 
 
