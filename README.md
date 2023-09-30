@@ -22,7 +22,7 @@
 11. [Deployment using AWS ECR + ECS with Load Balancer](https://github.com/u6yuvi/dl-package#deployment-using-aws-ecr--ecs-with-load-balancer)
 12. Stress Testing with Locust
 13. [Serverless Deployment on AWS Lambda with Versel UI] (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
-14. Clip K8 Deployment
+14. [Clip K8 Deployment](https://github.com/u6yuvi/dl-package/tree/k8#k8-deployment-on-minikube)
 
 
 ## Getting Started
