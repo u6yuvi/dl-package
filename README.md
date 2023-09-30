@@ -315,6 +315,10 @@ Steps:
 Steps:
 
 1. Start minikube 
+```
+minikube start --driver=docker
+```
+
 2. Deploy Clip Service on Single pod using minikube
 
 ![](images/k8-minikube-clip_deploy.png)
