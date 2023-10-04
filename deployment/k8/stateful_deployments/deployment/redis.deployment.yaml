@@ -34,4 +34,7 @@ spec:
                       - containerPort: 6379
                   env:
                     - name: REDIS_PASSWORD
-                      value: aiwilltakeovertheworld
+                      valueFrom:
+                        secretKeyRef:
+                          name: redis-secret
+                          key: db_password

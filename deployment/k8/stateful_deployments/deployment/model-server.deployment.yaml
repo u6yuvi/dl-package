@@ -24,10 +24,22 @@ spec:
         - containerPort: 80
         env:
           - name: REDIS_HOST
-            value: redis-db-service
+            valueFrom:
+              configMapKeyRef:
+                name:  redis-config
+                key: hostname
           - name: REDIS_PORT
-            value: "6379"
+            valueFrom:
+              configMapKeyRef:
+                name:  redis-config
+                key: port
           - name: REDIS_PASSWORD
-            value: aiwilltakeovertheworld
+            valueFrom:
+              secretKeyRef:
+                name: redis-secret
+                key: db_password
           - name: TIMM_MODEL
-            value: resnet18
+            valueFrom:
+                configMapKeyRef:
+                  name:  model-server-config
+                  key: timm_model
