@@ -1,6 +1,7 @@
 # Using Deployment Manifests
 
 ```
+cd deployment
 kubectl apply -f .
 minikube tunnel
 ```
