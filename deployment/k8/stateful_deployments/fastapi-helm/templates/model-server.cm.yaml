@@ -1,7 +1,17 @@
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: model-server-config
+# data:
+#   model_server_url: "http://model-server-service:9000"
+#   timm_model: "resnet18"
+
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: model-server-config
+    name: {{ .Values.configMap.modelServer }}
+    namespace: {{ .Values.namespace }}
 data:
-  model_server_url: "http://model-server-service:9000"
-  timm_model: "resnet18"
+    model_server_url: "http://{{ .Values.appName.model }}-service:9000"
+    timm_model: {{ .Values.model }}
