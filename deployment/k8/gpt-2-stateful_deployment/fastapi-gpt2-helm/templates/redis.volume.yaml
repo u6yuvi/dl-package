@@ -50,4 +50,4 @@ spec:
     volumeName: redis-pv
     resources:
         requests:
-            storage: "5Gi"
+            storage: {{.Values.volume.redisstorage}}

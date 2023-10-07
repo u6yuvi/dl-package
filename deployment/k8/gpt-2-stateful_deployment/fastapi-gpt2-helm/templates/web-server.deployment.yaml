@@ -73,7 +73,7 @@ spec:
                   #         memory: "200Mi"
                   #         cpu: "500m"
                   ports:
-                      - containerPort: 80
+                      - containerPort: {{.Values.appName.webport}}
                   env:
                       - name: REDIS_HOST
                         valueFrom:

@@ -18,5 +18,5 @@ spec:
     selector:
         app: "{{ .Values.appName.model }}"
     ports:
-        - port: 9000
-          targetPort: 80
+        - port: {{.Values.appName.modelserviceport}}
+          targetPort: {{.Values.appName.modelport}}

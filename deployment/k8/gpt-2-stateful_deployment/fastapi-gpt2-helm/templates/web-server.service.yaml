@@ -55,4 +55,4 @@ spec:
                         service:
                             name: {{ .Values.appName.web }} 
                             port:
-                                number: 8000
+                                number: {{.Values.appName.webserviceport}}

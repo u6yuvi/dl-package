@@ -65,7 +65,7 @@ spec:
                   image: {{ .Values.image.modelServer }}
                   imagePullPolicy: Never
                   ports:
-                      - containerPort: 80
+                      - containerPort: {{.Values.appName.modelport}}
                   env:
                       - name: REDIS_HOST
                         valueFrom:
