@@ -360,10 +360,15 @@ helm create fastapi-gpt2-release
 
 5. Add the configuration values in the values.yaml file.
 
-5. Deploy using helm
+6. Deploy using helm
 ```
 #helm install helm package <path to the package>
 helm install fastapi-gpt2-release fastapi-gpt2-helm --values fastapi-gpt2-helm/values.yaml 
+```
+7. Run ```munikube tunnel``` to connect minikube node to localhost
+Ensure to eable ingress addons 
+```
+minikube addons enable ingress 
 ```
 Go to fastapi.localhost to try the Inference using FastApi Docs
 ![](images/gpt2-k8-fastapi.png)
