@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  hostname: redis-db-service
+  port: "6379" #doesnot matter redis always runs on 6379

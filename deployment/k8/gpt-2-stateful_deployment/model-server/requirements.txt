@@ -1,0 +1,8 @@
+fastapi[all]==0.103.1
+# timm==0.9.7
+redis==5.0.0
+# transformers
+
+# numpy
+# Pillow
+# six
