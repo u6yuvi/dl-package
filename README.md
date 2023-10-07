@@ -23,6 +23,7 @@
 12. Stress Testing with Locust
 13. [Serverless Deployment on AWS Lambda with Versel UI] (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
 14. [Clip K8 Deployment](https://github.com/u6yuvi/dl-package/tree/k8#k8-deployment-on-minikube)
+15. [GPT-2 K8-Helm Deployment](https://github.com/u6yuvi/dl-package/tree/k8#k8-deployment-on-minikube-with-helm-charts)
 
 
 ## Getting Started
@@ -362,7 +363,7 @@ helm create fastapi-gpt2-release
 5. Deploy using helm
 ```
 #helm install helm package <path to the package>
-helm install fastapi-gpt2-release fastapi-gpt2-helm 
+helm install fastapi-gpt2-release fastapi-gpt2-helm --values fastapi-gpt2-helm/values.yaml 
 ```
 Go to fastapi.localhost to try the Inference using FastApi Docs
 ![](images/gpt2-k8-fastapi.png)
