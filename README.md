@@ -368,7 +368,7 @@ helm install fastapi-gpt2-release fastapi-gpt2-helm --values fastapi-gpt2-helm/v
 Go to fastapi.localhost to try the Inference using FastApi Docs
 ![](images/gpt2-k8-fastapi.png)
 
-Refer gpt-2-k8.md file for more details on the deployment specs.
+Refer [gpt-2-k8.md](https://github.com/u6yuvi/dl-package/blob/k8/deployment/k8/gpt-2-stateful_deployment/gpt-2-k8.md) file for more details on the deployment specs.
 
 
 ### Development in DEV Container with VS Code
