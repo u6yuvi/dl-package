@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment # kind
+metadata:
+    name: fastapi-deployment # name of deployment
+    labels:
+        app: fastapi
+spec: # specs for deployment
+    replicas: 3
+    selector:
+        matchLabels:
+            app: fastapi
+    template:
+        metadata:
+            labels:
+                app: fastapi
+        spec: # specs for each pod
+            containers:
+                - name: fastapi
+                  image: tiangolo/uvicorn-gunicorn-fastapi:python3.11-slim-2023-09-11
+                  ports:
+                      - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: fastapi-svc
+spec:
+    selector:
+        app: fastapi
+    type: LoadBalancer
+    ports:
+        - protocol: TCP
+          port: 9376
+          targetPort: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: fastapi-ingress
+spec:
+    rules:
+        - host: anything.localhost
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: fastapi-svc
+                            port:
+                                number: 9376

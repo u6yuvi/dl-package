@@ -1,0 +1,21 @@
+namespace: default
+
+appName:
+  model: 'model-server'
+  web: 'web-server'
+
+model: "resnet18"
+
+configMap:
+  modelServer: "model-server-config" 
+  redis: "redis-config" 
+
+secretKey:
+  redis: "redis-secret"
+
+image:
+  modelServer: "model_server:latest"
+  webServer: "web_server:latest"
+  redis: "redis:7.2.1"
+
+hostname: "fastapi.localhost"

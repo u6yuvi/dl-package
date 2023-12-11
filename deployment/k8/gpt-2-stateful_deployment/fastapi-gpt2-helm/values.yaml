@@ -1,0 +1,31 @@
+namespace: default
+
+appName:
+  model: 'model-server'
+  modelport: 80
+  modelserviceport: 9000
+  web: 'web-server'
+  webport: 80
+  webserviceport: 8000
+  redisport: 6379
+  redisserviceport: 6379
+
+model: "gpt2"
+
+configMap:
+  modelServer: "model-server-config" 
+  redis: "redis-config" 
+
+secretKey:
+  redis: "redis-secret"
+  redis_password: cmVhbGx5ZGlmZmljdWx0cGFzc3dvcmQ=
+
+image:
+  modelServer: "model_server:latest"
+  webServer: "web_server:latest"
+  redis: "redis:7.2.1"
+
+hostname: "fastapi.localhost"
+
+volume:
+  redisstorage: "5Gi"

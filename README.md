@@ -21,7 +21,9 @@
 10. [Build Model Endpoints using FastAPI](https://github.com/u6yuvi/dl-package#build-model-endpoints-using-fastapi)
 11. [Deployment using AWS ECR + ECS with Load Balancer](https://github.com/u6yuvi/dl-package#deployment-using-aws-ecr--ecs-with-load-balancer)
 12. Stress Testing with Locust
-13. Serverless Deployment on AWS Lambda with Versel UI (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
+13. [Serverless Deployment on AWS Lambda with Versel UI] (https://github.com/u6yuvi/dl-package#serverless-deployment-on-aws-lambda-with-onxx-runtime)
+14. [Clip K8 Deployment](https://github.com/u6yuvi/dl-package/tree/k8#k8-deployment-on-minikube)
+15. [GPT-2 K8-Helm Deployment](https://github.com/u6yuvi/dl-package/tree/k8#k8-deployment-on-minikube-with-helm-charts)
 
 
 ## Getting Started
@@ -305,7 +307,73 @@ Steps:
     ![](images/versel_deploy.png)
 
 
+# K8 Deployment on Minikube
+[K8 code cheetsheet](https://docs.google.com/document/d/1ghmQ2gNDZcyrnc0KYXRZ6GUAc_h0s0KQvX3xgACDKTE/edit?usp=sharing)
 
+1. Clip K8 Deployment
+	Refer deployment/clip_service for more details
+	
+Steps:
+
+1. Start minikube 
+```
+minikube start --driver=docker
+```
+
+2. Deploy Clip Service on Single pod using minikube
+
+![](images/k8-minikube-clip_deploy.png)
+
+3. Run munikube tunnel to connect minikube node to localhost
+Ensure to eable ingress addons 
+```
+minikube addons enable ingress 
+```
+![](images/k8-minikube-clip_tunnel.png)
+4. Test Prediction using FastApi Docs at clip.localhost
+![](images/k8-minikube-clip_fastapi.png)
+
+5. Check deployment status
+![](images/k8-minikube-clip_deploy_info.png)
+
+
+# K8 Deployment on Minikube with Helm Charts
+
+Refer deployment/k8/gpt-2-stateful_deployment
+
+Steps:
+
+1. Install Helm package 
+```
+brew install helm
+```
+
+2. Create new helm package for fastai-gpt2-release
+
+```
+helm create fastapi-gpt2-release
+
+```
+3. Remove all the files inside the template and clear all the values from values.yaml file
+
+4. Copy all the Deployment Manifest files from ```deployment``` into the template folder
+
+5. Add the configuration values in the values.yaml file.
+
+6. Deploy using helm
+```
+#helm install helm package <path to the package>
+helm install fastapi-gpt2-release fastapi-gpt2-helm --values fastapi-gpt2-helm/values.yaml 
+```
+7. Run ```munikube tunnel``` to connect minikube node to localhost
+Ensure to eable ingress addons 
+```
+minikube addons enable ingress 
+```
+Go to fastapi.localhost to try the Inference using FastApi Docs
+![](images/gpt2-k8-fastapi.png)
+
+Refer [gpt-2-k8.md](https://github.com/u6yuvi/dl-package/blob/k8/deployment/k8/gpt-2-stateful_deployment/gpt-2-k8.md) file for more details on the deployment specs.
 
 
 ### Development in DEV Container with VS Code
