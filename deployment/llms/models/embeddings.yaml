@@ -1,0 +1,8 @@
+name: text-embedding-ada-002
+backend: sentencetransformers
+embeddings: true
+parameters:
+  model: BAAI/bge-large-en
+
+
+ 
