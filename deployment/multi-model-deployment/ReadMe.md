@@ -38,5 +38,33 @@ torchserve --ts-config src/config.properties --model-store src/
 torchserve --ts-config /home/model-server/config.properties --model-store /models/multi-model-deployment/
 ```
 
+minikube start --driver=docker --memory 6745 --cpus 4 --disk-size 100g
 
+#Using PV Volume
+
+https://github.com/idiap/pytorch-serve/tree/master/kubernetes/kserve
+
+kubectl apply -f pv-deployments/pv.yaml -n kserve
+
+#create pod
+kubectl apply -f pv-deployments/pv_pod.yaml -n kserve 
+
+#create directories
+kubectl exec -it model-store-pod -c model-store -n kserve -- mkdir /pv/model-store/
+kubectl exec -it model-store-pod -c model-store -n kserve -- mkdir /pv/config/
+
+#copy files
+kubectl cp cat-classifier.mar model-store-pod:/pv/model-store/ -c model-store -n kserve
+kubectl cp config.properties model-store-pod:/pv/config/ -c model-store -n kserve
+
+kubectl -n kserve apply -f all-classifier.yaml
+
+#Reference to look for
+https://github.com/kserve/kserve/tree/master/docs/samples/v1beta1/torchserve
+
+#Developer 
+https://github.com/kserve/website/blob/main/docs/developer/developer.md
+
+Debug
+https://github.com/kserve/website/blob/main/docs/developer/debug.md
 

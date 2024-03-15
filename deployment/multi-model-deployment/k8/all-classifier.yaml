@@ -4,79 +4,79 @@ metadata:
   name: "cat-classifier"
 spec:
   predictor:
-    serviceAccountName: s3-read-only
+    # serviceAccountName: s3-read-only
     model:
       modelFormat:
         name: pytorch
-      storageUri: s3://emlov3-uv/kserve-mm/cat-classifier/
+      # storageUri: s3://emlov3-uv/kserve-mm/cat-classifier/
+      storageUri: "pvc://model-store-claim"
       # resources:
       #   limits:
       #     cpu: 2000m
+# ---
 
----
+# apiVersion: "serving.kserve.io/v1beta1"
+# kind: "InferenceService"
+# metadata:
+#   name: "dog-classifier"
+# spec:
+#   predictor:
+#     serviceAccountName: s3-read-only
+#     model:
+#       modelFormat:
+#         name: pytorch
+#       storageUri: s3://emlov3-uv/kserve-mm/dog-classifier/
+#       # resources:
+#       #   limits:
+#       #     cpu: 2000m
 
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
-metadata:
-  name: "dog-classifier"
-spec:
-  predictor:
-    serviceAccountName: s3-read-only
-    model:
-      modelFormat:
-        name: pytorch
-      storageUri: s3://emlov3-uv/kserve-mm/dog-classifier/
-      # resources:
-      #   limits:
-      #     cpu: 2000m
+# ---
 
----
+# apiVersion: "serving.kserve.io/v1beta1"
+# kind: "InferenceService"
+# metadata:
+#   name: "food-classifier"
+# spec:
+#   predictor:
+#     serviceAccountName: s3-read-only
+#     model:
+#       modelFormat:
+#         name: pytorch
+#       storageUri: s3://emlov3-uv/kserve-mm/food-classifier/
+#       # resources:
+#       #   limits:
+#       #     cpu: 2000m
 
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
-metadata:
-  name: "food-classifier"
-spec:
-  predictor:
-    serviceAccountName: s3-read-only
-    model:
-      modelFormat:
-        name: pytorch
-      storageUri: s3://emlov3-uv/kserve-mm/food-classifier/
-      # resources:
-      #   limits:
-      #     cpu: 2000m
+# ---
 
----
+# apiVersion: "serving.kserve.io/v1beta1"
+# kind: "InferenceService"
+# metadata:
+#   name: "imagenet-vit"
+# spec:
+#   predictor:
+#     serviceAccountName: s3-read-only
+#     model:
+#       modelFormat:
+#         name: pytorch
+#       storageUri: s3://emlov3-uv/kserve-mm/imagenet-vit/
+#       # resources:
+#       #   limits:
+#       #     cpu: 2000m
 
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
-metadata:
-  name: "imagenet-vit"
-spec:
-  predictor:
-    serviceAccountName: s3-read-only
-    model:
-      modelFormat:
-        name: pytorch
-      storageUri: s3://emlov3-uv/kserve-mm/imagenet-vit/
-      # resources:
-      #   limits:
-      #     cpu: 2000m
+# ---
 
----
-
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
-metadata:
-  name: "indian-food-classifier"
-spec:
-  predictor:
-    serviceAccountName: s3-read-only
-    model:
-      modelFormat:
-        name: pytorch
-      storageUri: s3://emlov3-uv/kserve-mm/indian-food-classifier/
-      # resources:
-      #   limits:
-      #     cpu: 2000m
+# apiVersion: "serving.kserve.io/v1beta1"
+# kind: "InferenceService"
+# metadata:
+#   name: "indian-food-classifier"
+# spec:
+#   predictor:
+#     serviceAccountName: s3-read-only
+#     model:
+#       modelFormat:
+#         name: pytorch
+#       storageUri: s3://emlov3-uv/kserve-mm/indian-food-classifier/
+#       # resources:
+#       #   limits:
+#       #     cpu: 2000m
