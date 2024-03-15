@@ -1,9 +1,19 @@
-apiVersion: "serving.kserve.io/v1beta1"
-kind: "InferenceService"
+# apiVersion: "serving.kserve.io/v1beta1"
+# kind: "InferenceService"
+# metadata:
+#   name: "sklearn-iris"
+# spec:
+#   predictor:
+#     sklearn:
+#       # protocolVersion: "v2"
+#       storageUri: "gs://kfserving-samples/models/sklearn/iris"
+
+---
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
 metadata:
-  name: "sklearn-iris"
+  name: sklearn-from-uri
 spec:
   predictor:
     sklearn:
-      # protocolVersion: "v2"
-      storageUri: "gs://kfserving-samples/models/sklearn/iris"
+      storageUri: https://github.com/tduffy000/kfserving-uri-examples/blob/master/sklearn/frozen/model.joblib?raw=true
