@@ -40,6 +40,9 @@ torchserve --ts-config /home/model-server/config.properties --model-store /model
 
 minikube start --driver=docker --memory 6745 --cpus 4 --disk-size 100g
 
+#Delete istio 
+istio-1.9.0/bin/istioctl x uninstall --purge
+
 #Using PV Volume
 
 https://github.com/idiap/pytorch-serve/tree/master/kubernetes/kserve
